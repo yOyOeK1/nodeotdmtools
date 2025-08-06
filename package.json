@@ -1,0 +1,29 @@
+{
+  "name": "nodeotdmtools",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "exports":{
+    ".":{
+      "import": "./otdmTools.mjs",
+      "require": "./otdmTools.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "description": "To decifer it ... node with oiyshTerminal tools set. Wraper",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ott": "node index.js",
+    "runSum": "time npm run ott -- -cliSapi \"sum/1/2/.json\"",
+    "runSumNativ": "time ott -- -cliSapi \"sum/1/2/.json\"",
+    "runHttp": "npm run ott -- -serviceIt http"
+  },
+  "author": "Bartlomiej Ceglik <yoyoek@wp.pl>",
+  "license": "ISC",
+  "keywords": [
+    "oiyshTerminal",
+    "otdmTools"
+  ],
+  "dependencies": {
+    "python-shell": "^5.0.0"
+  }
+}
