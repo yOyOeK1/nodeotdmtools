@@ -11,6 +11,7 @@ in bash
 $ npm run ott -- -v 1
 $ npm run ott -- -cliSapi "sum/1/2/.json"
 $ npm run ott -- -cliSapi "echo/Hello from otdmTools :)/.json"
+$ npm run ott -- -cliSapi 'exeIt/{"v":"1"}' -oFile '--'
 ```
 
 or 

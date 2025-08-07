@@ -63,11 +63,12 @@ class otdmTools{
 
 
             if( Object.keys(this.tasks).length > 0 && this.tasks[msgNo] != undefined ){
+                //this.cl(`\nDebug: -----\n\nq:${this.tasks[msgNo]['q']}-\n---------\n[${res}]\n-----------`);
                 this.tasks[msgNo]['res'](res);
                 clearTimeout(this.tasks[msgNo]['to']);
                 delete this.tasks[msgNo];
             }else{
-                this.cl(`\nResult: ----------\n[${res}]\n-----------`);
+                this.cl(`\nResult: not solvd ----------\n[${res}]\n-----------`);
             }
 
         }else{
@@ -84,8 +85,8 @@ class otdmTools{
     doTask(q){
         let tN = Date.now();
         let tr = { 'tN': tN,'q': q, 'cNo': this.cNo };
-        this.tasks[this.cNo] = tr;
-        let taskI = this.cNo;
+        let taskI = `${this.cNo}`;
+        this.tasks[taskI] = tr;
 
         tr['p'] = new Promise( (res,rej)=>{
             tr['res'] = res;
@@ -94,11 +95,14 @@ class otdmTools{
             this.sendQ(q);
         });
         
+        let tIdTO = `${taskI}`;
         tr['to'] = setTimeout(()=>{
-            console.error(`task time out ....`);
+            console.error(`task time out ....id: ${tIdTO}`,
+                this.tasks[tIdTO]['q']
+            );
             
-            this.tasks[ taskI ].rej('time out');
-            delete this.tasks[ taskI ];
+            //this.tasks[ tIdTO ]['rej']('time out');
+            delete this.tasks[ tIdTO ];
             
         },5000);
         
