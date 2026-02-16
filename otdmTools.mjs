@@ -33,7 +33,7 @@ class otdmTools{
         };
         this.ott = new PythonShell('otdmTools.py', opts);
         this.sendQ('ver');
-        //this.ott.on('message', this.onMessage );
+        this.ott.on('message', this.onMessage );
         /*this.ott.end((err,code,signal) => {
             //if (err) throw err;
             this.cl('The exit code was: ' + code);
@@ -48,7 +48,7 @@ class otdmTools{
 
     onMessage=( msg )=>{
 
-        //this.cl(`onMes:     ${msg}`);
+        this.cl(`onMes:     ${msg}`);
         let res = '';
         let msgS = String(msg);
         let msgNo = parseInt( msgS.substring(8, msgS.indexOf(' ')) );
@@ -79,6 +79,7 @@ class otdmTools{
 
     sendQ( q ){
         this.cNo ++;
+        this.cl(`send       ${q}`);
         this.ott.send( `${q}` );
     }
 
@@ -91,7 +92,8 @@ class otdmTools{
         tr['p'] = new Promise( (res,rej)=>{
             tr['res'] = res;
             tr['rej'] = rej;
-            
+            //this.cl(`send doTask      ${q}`);
+            //this.cl(q);
             this.sendQ(q);
         });
         
